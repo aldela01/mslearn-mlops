@@ -2,6 +2,9 @@ name: Manually trigger an Azure Machine Learning job
 
 on:
   workflow_dispatch:
+  pull request:
+    branches:
+      - main
 
 env:
   AZURE_RESOURCE_GROUP: ${{ vars.AZURE_RESOURCE_GROUP }}
@@ -35,5 +38,4 @@ jobs:
           az ml job create \
             --file src/job.yml \
             --resource-group "$AZURE_RESOURCE_GROUP" \
-            --workspace-name "$AZURE_WORKSPACE_NAME" \
-            --stream
+            --workspace-name "$AZURE_WORKSPACE_NAME"
