@@ -1,10 +1,13 @@
 name: Manually trigger an Azure Machine Learning job
 
+# Manual trigger workflow.
 on:
   workflow_dispatch:
-  pull_request:
-    branches:
-      - main
+    inputs:
+      job_name:
+        description: 'Name of the Azure ML job to run'
+        required: true
+        default: 'diabetes-train-manual'
 
 env:
   AZURE_RESOURCE_GROUP: ${{ vars.AZURE_RESOURCE_GROUP }}
